@@ -19,7 +19,7 @@ function SearchHistory({ debouncedSearch, OnSearchByHistory }) {
   };
 
   return (
-    <div className="bg-transparent p-2 text-white">
+    <div className="bg-transparent p-2 text-white min-h-30 col-span-1 sm:col-span-2 lg:col-span-1">
       <div className="flex justify-between items-center mb-2">
         <p className="text-xs text-gray-400">HISTORIAL DE BÚSQUEDA</p>
 
