@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import SearchBar from './SearchBar';
 import StatsPanel from './StatsPanel';
+import PlayerTable from './PlayerTable';
 
 function Content() {
   const [search, setSearch] = useState('');
@@ -21,6 +22,7 @@ function Content() {
         debouncedSearch={debouncedSearch}
         OnSearchByHistory={setSearch}
       />
+      <PlayerTable debouncedSearch={debouncedSearch} />
     </div>
   );
 }
