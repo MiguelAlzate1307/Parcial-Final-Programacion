@@ -1,11 +1,11 @@
 import SearchHistory from './SearchHistory';
 
-function StatsPanel({ debouncedSearch, OnSearchByHistory }) {
+function StatsPanel({ debouncedSearch, OnSearchByHistory, totalItems }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mt-6">
       <div className="bg-yellow-400 p-4 rounded-lg text-black min-h-30">
         <p className="text-xs font-semibold">JUGADORES EN TABLA</p>
-        <h2 className="text-3xl font-bold mt-1">1</h2>
+        <h2 className="text-3xl font-bold mt-1">{totalItems}</h2>
 
         <span className="text-xs bg-black text-yellow-400 px-2 py-1 rounded mt-2 inline-block">
           Favoritos: 1

@@ -1,12 +1,25 @@
+import { useEffect } from 'react';
 import { players } from '../utils/players-data';
 import PlayerRow from './PlayerRow';
 
-function PlayerTable({ debouncedSearch }) {
+function PlayerTable({
+  debouncedSearch,
+  OnFilteredCount,
+  itemsPerPage,
+  currentPage,
+}) {
   const filteredPlayers = players.filter(
     (p) =>
       p.name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
       p.club.toLowerCase().includes(debouncedSearch.toLowerCase()),
   );
+
+  const start = (currentPage - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+
+  useEffect(() => {
+    OnFilteredCount(filteredPlayers.length);
+  }, [filteredPlayers.length, OnFilteredCount]);
 
   return (
     <div className="mt-4">
@@ -21,7 +34,7 @@ function PlayerTable({ debouncedSearch }) {
           Limpiar color
         </button>
       </div>
-      <div className="w-full overflow-y-hidden overflow-x-scroll mt-4 rounded-lg shadow-lg">
+      <div className="w-full overflow-y-hidden overflow-x-scroll xl:overflow-x-hidden mt-4 rounded-lg shadow-lg">
         <table className="w-full">
           <thead className="bg-gray-950">
             <tr>
@@ -37,7 +50,7 @@ function PlayerTable({ debouncedSearch }) {
             </tr>
           </thead>
           <tbody className="bg-white text-gray-950">
-            {filteredPlayers.map((p, i) => (
+            {filteredPlayers.slice(start, end).map((p, i) => (
               <PlayerRow key={i} player={p} />
             ))}
           </tbody>
