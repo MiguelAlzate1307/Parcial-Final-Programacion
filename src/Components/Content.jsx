@@ -53,7 +53,7 @@ function Content() {
         itemsPerPage={itemsPerPage}
         currentPage={currentPage}
         OnChangeFav={setTotalFav}
-        players={filteredPlayers}
+        players={filteredPlayers.length !== 0 ? filteredPlayers : []}
       />
       <Pagination
         totalPages={totalPages === 0 ? 1 : totalPages}

@@ -1,8 +1,8 @@
-function PlayerRow({ player, OnChangeFav }) {
+function PlayerRow({ player, OnChangeFav, rowColor }) {
   const buttonClass = `p-2 rounded-md border border-yellow-400 hover:cursor-pointer hover:scale-105 transition duration-75 ${player.fav ? 'bg-yellow-400' : 'bg-none'}`;
 
   return (
-    <tr className="text-center border-b border-gray-400">
+    <tr className={`text-center border-b border-gray-400 ${rowColor}`}>
       <td scope="col" className="px-4 py-2">
         {player.fav ? (
           <button
