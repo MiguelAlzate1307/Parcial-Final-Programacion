@@ -3,6 +3,7 @@ import SearchBar from './SearchBar';
 import StatsPanel from './StatsPanel';
 import PlayerTable from './PlayerTable';
 import Pagination from './Pagination';
+import Modal from './Modal';
 import { players } from '../utils/players-data';
 
 function Content() {
@@ -11,6 +12,8 @@ function Content() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
   const [filteredPlayers, setFilteredPlayers] = useState(players);
+  const [selectedPlayer, setSelectedPlayer] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   const getTotalFav = () => filteredPlayers.filter((p) => p.fav).length;
   const [totalFav, setTotalFav] = useState(getTotalFav());
@@ -53,6 +56,10 @@ function Content() {
         itemsPerPage={itemsPerPage}
         currentPage={currentPage}
         OnChangeFav={setTotalFav}
+        OnSelectPlayer={(player) => {
+          setSelectedPlayer(player);
+          setShowModal(true);
+        }}
         players={filteredPlayers.length !== 0 ? filteredPlayers : []}
       />
       <Pagination
@@ -61,6 +68,11 @@ function Content() {
         OnPageChange={setCurrentPage}
         itemsPerPage={itemsPerPage}
         OnItemsPerPageChange={setItemsPerPage}
+      />
+      <Modal
+        isOpen={showModal}
+        player={selectedPlayer}
+        onClose={() => setShowModal(false)}
       />
     </div>
   );

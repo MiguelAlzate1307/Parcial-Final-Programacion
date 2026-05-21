@@ -1,4 +1,4 @@
-function PlayerRow({ player, OnChangeFav, rowColor }) {
+function PlayerRow({ player, OnChangeFav, OnSelectPlayer, rowColor }) {
   const buttonClass = `p-2 rounded-md border border-yellow-400 hover:cursor-pointer hover:scale-105 transition duration-75 ${player.fav ? 'bg-yellow-400' : 'bg-none'}`;
 
   return (
@@ -35,28 +35,68 @@ function PlayerRow({ player, OnChangeFav, rowColor }) {
         )}
       </td>
       <td scope="col" className="px-4 py-2">
-        {player.name}
+        <button
+          className="hover:cursor-pointer"
+          onClick={() => OnSelectPlayer(player)}
+        >
+          {player.name}
+        </button>
       </td>
       <td scope="col" className="px-4 py-2">
-        {player.club}
+        <button
+          className="hover:cursor-pointer"
+          onClick={() => OnSelectPlayer(player)}
+        >
+          {player.club}
+        </button>
       </td>
       <td scope="col" className="px-4 py-2">
-        {player.position}
+        <button
+          className="hover:cursor-pointer"
+          onClick={() => OnSelectPlayer(player)}
+        >
+          {player.position}
+        </button>
       </td>
       <td scope="col" className="px-4 py-2">
-        {player.country}
+        <button
+          className="hover:cursor-pointer"
+          onClick={() => OnSelectPlayer(player)}
+        >
+          {player.country}
+        </button>
       </td>
       <td scope="col" className="px-4 py-2">
-        {player.age}
+        <button
+          className="hover:cursor-pointer"
+          onClick={() => OnSelectPlayer(player)}
+        >
+          {player.age}
+        </button>
       </td>
       <td scope="col" className="px-4 py-2">
-        {player.goals}
+        <button
+          className="hover:cursor-pointer"
+          onClick={() => OnSelectPlayer(player)}
+        >
+          {player.goals}
+        </button>
       </td>
       <td scope="col" className="px-4 py-2">
-        {player.assists}
+        <button
+          className="hover:cursor-pointer"
+          onClick={() => OnSelectPlayer(player)}
+        >
+          {player.assists}
+        </button>
       </td>
       <td scope="col" className="px-4 py-2">
-        {player.rating}
+        <button
+          className="hover:cursor-pointer"
+          onClick={() => OnSelectPlayer(player)}
+        >
+          {player.rating}
+        </button>
       </td>
     </tr>
   );

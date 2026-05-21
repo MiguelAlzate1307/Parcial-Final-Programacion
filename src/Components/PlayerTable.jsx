@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import PlayerRow from './PlayerRow';
 
-function PlayerTable({ itemsPerPage, currentPage, OnChangeFav, players }) {
+function PlayerTable({
+  itemsPerPage,
+  currentPage,
+  OnChangeFav,
+  OnSelectPlayer,
+  players,
+}) {
   const [rowColors, setRowColors] = useState('none');
 
   const start = (currentPage - 1) * itemsPerPage;
@@ -61,6 +67,7 @@ function PlayerTable({ itemsPerPage, currentPage, OnChangeFav, players }) {
                 key={i}
                 player={p}
                 OnChangeFav={OnChangeFav}
+                OnSelectPlayer={OnSelectPlayer}
                 rowColor={paintRows(i + 1)}
               />
             ))}
