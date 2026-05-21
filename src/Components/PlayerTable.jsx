@@ -7,6 +7,7 @@ function PlayerTable({
   OnFilteredCount,
   itemsPerPage,
   currentPage,
+  OnChangeFav,
 }) {
   const filteredPlayers = players.filter(
     (p) =>
@@ -51,7 +52,7 @@ function PlayerTable({
           </thead>
           <tbody className="bg-white text-gray-950">
             {filteredPlayers.slice(start, end).map((p, i) => (
-              <PlayerRow key={i} player={p} />
+              <PlayerRow key={i} player={p} OnChangeFav={OnChangeFav} />
             ))}
           </tbody>
         </table>
