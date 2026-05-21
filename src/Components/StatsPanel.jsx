@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import SearchHistory from './SearchHistory';
 
 function StatsPanel({
@@ -5,7 +6,38 @@ function StatsPanel({
   OnSearchByHistory,
   totalItems,
   totalFav,
+  players,
 }) {
+  const avgGoals = useMemo(() => {
+    let sum = 0;
+
+    for (const i of players) {
+      sum += i.goals;
+    }
+
+    return (sum / players.length).toFixed(2);
+  }, [players]);
+
+  const avgAge = useMemo(() => {
+    let sum = 0;
+
+    for (const i of players) {
+      sum += i.age;
+    }
+
+    return Math.round(sum / players.length);
+  }, [players]);
+
+  const topScorer = useMemo(() => {
+    let topScorer = players[0];
+
+    for (const i of players) {
+      if (i.goals > topScorer.goals) topScorer = i;
+    }
+
+    return topScorer;
+  }, [players]);
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mt-6">
       <div className="bg-yellow-400 p-4 rounded-lg text-black min-h-30">
@@ -18,15 +50,15 @@ function StatsPanel({
       </div>
       <div className="shadow-lg min-h-30 dark:bg-[#2A2D3E] p-4 rounded-lg">
         <p className="text-xs text-gray-400">PROMEDIO DE GOLES</p>
-        <h2 className="text-xl font-semibold mt-2">24.0</h2>
+        <h2 className="text-xl font-semibold mt-2">{avgGoals}</h2>
       </div>
       <div className="shadow-lg min-h-30 dark:bg-[#2A2D3E] p-4 rounded-lg">
         <p className="text-xs text-gray-400">PROMEDIO DE EDAD</p>
-        <h2 className="text-xl font-semibold mt-2">37 años</h2>
+        <h2 className="text-xl font-semibold mt-2">{avgAge} años</h2>
       </div>
       <div className="shadow-lg min-h-30 dark:bg-[#1F2937] p-4 rounded-lg">
         <p className="text-xs text-gray-400">MÁXIMO GOLEADOR</p>
-        <h2 className="text-lg font-semibold mt-2">Lionel Messi</h2>
+        <h2 className="text-lg font-semibold mt-2">{topScorer.name}</h2>
       </div>
       <SearchHistory
         debouncedSearch={debouncedSearch}

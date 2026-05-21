@@ -1,26 +1,8 @@
-import { useEffect } from 'react';
-import { players } from '../utils/players-data';
 import PlayerRow from './PlayerRow';
 
-function PlayerTable({
-  debouncedSearch,
-  OnFilteredCount,
-  itemsPerPage,
-  currentPage,
-  OnChangeFav,
-}) {
-  const filteredPlayers = players.filter(
-    (p) =>
-      p.name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
-      p.club.toLowerCase().includes(debouncedSearch.toLowerCase()),
-  );
-
+function PlayerTable({ itemsPerPage, currentPage, OnChangeFav, players }) {
   const start = (currentPage - 1) * itemsPerPage;
   const end = start + itemsPerPage;
-
-  useEffect(() => {
-    OnFilteredCount(filteredPlayers.length);
-  }, [filteredPlayers.length, OnFilteredCount]);
 
   return (
     <div className="mt-4">
@@ -51,7 +33,7 @@ function PlayerTable({
             </tr>
           </thead>
           <tbody className="bg-white text-gray-950">
-            {filteredPlayers.slice(start, end).map((p, i) => (
+            {players.slice(start, end).map((p, i) => (
               <PlayerRow key={i} player={p} OnChangeFav={OnChangeFav} />
             ))}
           </tbody>
