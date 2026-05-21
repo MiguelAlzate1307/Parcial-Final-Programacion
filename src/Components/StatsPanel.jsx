@@ -9,6 +9,8 @@ function StatsPanel({
   players,
 }) {
   const avgGoals = useMemo(() => {
+    if (players.length === 0) return 0;
+
     let sum = 0;
 
     for (const i of players) {
@@ -19,6 +21,8 @@ function StatsPanel({
   }, [players]);
 
   const avgAge = useMemo(() => {
+    if (players.length === 0) return 0;
+
     let sum = 0;
 
     for (const i of players) {
@@ -29,6 +33,8 @@ function StatsPanel({
   }, [players]);
 
   const topScorer = useMemo(() => {
+    if (players.length === 0) return 0;
+
     let topScorer = players[0];
 
     for (const i of players) {
