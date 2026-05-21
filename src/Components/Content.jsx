@@ -42,7 +42,7 @@ function Content() {
   }, [debouncedSearch]);
 
   return (
-    <div className="w-full dark:bg-[#202020] rounded-md bg-white min-h-screen p-8">
+    <div className="w-full dark:bg-[#202020] rounded-md bg-white p-8">
       <SearchBar search={search} OnSearch={setSearch} />
       <StatsPanel
         debouncedSearch={debouncedSearch}
