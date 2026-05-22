@@ -23,7 +23,7 @@ function Content() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedSearch(search);
-    }, 250);
+    }, 300);
 
     return () => clearTimeout(timer);
   }, [search]);
